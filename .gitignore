@@ -78,3 +78,8 @@ typings/
 
 # Frontend Mentor
 .brief
+*.sketch
+*.fig
+*.xd
+.DS_Store
+.prettierignore
