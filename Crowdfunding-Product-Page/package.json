@@ -1,0 +1,20 @@
+{
+  "name": "Crowdfunding-Product-Page",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "dependencies": {
+    "react-dom": "^17.0.1",
+    "sass": "^1.32.8"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.1",
+    "react": "^17.0.1"
+  },
+  "scripts": {
+    "start": "parcel ./src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
