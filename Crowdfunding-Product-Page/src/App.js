@@ -1,11 +1,27 @@
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
+import {
+	Header,
+	Nav
+} from './components'
+
+import {
+	Title,
+	Progress,
+	Main
+} from './sections'
 
 export default function App() {
 	return (
 		<>
-			<h1 className="test">Test</h1>
-			<p>Another test...</p>
+			<Header>
+				<Nav />
+			</Header>
+			
+			<Title />
+			<Progress />
+			<Main />
 		</>
 	)
 }

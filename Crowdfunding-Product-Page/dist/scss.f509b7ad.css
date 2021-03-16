@@ -12,11 +12,7 @@ html, body {
 }
 
 body {
-  background-color: antiquewhite;
+  background-color: #fafafa;
   font-family: "Commissioner", sans-serif;
-  color: blue;
-}
-body .test {
-  color: red;
 }
 /*# sourceMappingURL=scss.f509b7ad.css.map */

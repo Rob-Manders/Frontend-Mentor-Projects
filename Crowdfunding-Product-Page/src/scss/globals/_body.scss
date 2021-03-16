@@ -1,10 +1,7 @@
 
-body {
-	background-color: antiquewhite;
-	font-family: 'Commissioner', sans-serif;
-	color: blue;
+@use '../abstracts' as *;
 
-	.test {
-		color: red;
-	}
+body {
+	background-color: $background-light-grey;
+	font-family: 'Commissioner', sans-serif;
 }

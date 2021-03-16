@@ -441,7 +441,7 @@ try {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"c3469d175e6ab91a6ebac2096f1b2459","./App":"a7f9e5fcd97d33bf9e554d6c06722627","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"304bfcdf97c182c258933a329c4fc1cd","react-dom":"651fc26ccddec1886b73afbdef9f97ee"}],"c3469d175e6ab91a6ebac2096f1b2459":[function(require,module,exports) {
+},{"react":"c3469d175e6ab91a6ebac2096f1b2459","react-dom":"651fc26ccddec1886b73afbdef9f97ee","./App":"a7f9e5fcd97d33bf9e554d6c06722627","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"304bfcdf97c182c258933a329c4fc1cd"}],"c3469d175e6ab91a6ebac2096f1b2459":[function(require,module,exports) {
 'use strict';
 
 if ("development" === 'production') {
@@ -2825,808 +2825,6 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	return to;
 };
 
-},{}],"a7f9e5fcd97d33bf9e554d6c06722627":[function(require,module,exports) {
-"use strict";
-
-var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-
-try {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = App;
-
-  var _react = _interopRequireDefault(require("react"));
-
-  var _jsxFileName = "C:\\Dev\\Web\\Frontend-Mentor-Projects\\Crowdfunding-Product-Page\\src\\App.js";
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  function App() {
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", {
-      className: "test",
-      __self: this,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 7,
-        columnNumber: 4
-      }
-    }, "Test"), /*#__PURE__*/_react.default.createElement("p", {
-      __self: this,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 8,
-        columnNumber: 4
-      }
-    }, "Another test..."));
-  }
-
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"c3469d175e6ab91a6ebac2096f1b2459","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"304bfcdf97c182c258933a329c4fc1cd"}],"304bfcdf97c182c258933a329c4fc1cd":[function(require,module,exports) {
-"use strict";
-
-var Refresh = require('react-refresh/runtime');
-
-function debounce(func, delay) {
-  if ("development" === 'test') {
-    return function (args) {
-      func.call(null, args);
-    };
-  } else {
-    var timeout = undefined;
-    return function (args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(function () {
-        timeout = undefined;
-        func.call(null, args);
-      }, delay);
-    };
-  }
-}
-
-var enqueueUpdate = debounce(function () {
-  Refresh.performReactRefresh();
-}, 30); // Everthing below is either adapted or copied from
-// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
-// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
-
-module.exports.prelude = function (module) {
-  window.$RefreshReg$ = function (type, id) {
-    Refresh.register(type, module.id + ' ' + id);
-  };
-
-  window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
-};
-
-module.exports.postlude = function (module) {
-  if (isReactRefreshBoundary(module.exports)) {
-    registerExportsForReactRefresh(module);
-
-    if (module.hot) {
-      module.hot.dispose(function (data) {
-        if (Refresh.hasUnrecoverableErrors()) {
-          window.location.reload();
-        }
-
-        data.prevExports = module.exports;
-      });
-      module.hot.accept(function (getParents) {
-        var prevExports = module.hot.data.prevExports;
-        var nextExports = module.exports; // Since we just executed the code for it, it's possible
-        // that the new exports make it ineligible for being a boundary.
-
-        var isNoLongerABoundary = !isReactRefreshBoundary(nextExports); // It can also become ineligible if its exports are incompatible
-        // with the previous exports.
-        // For example, if you add/remove/change exports, we'll want
-        // to re-execute the importing modules, and force those components
-        // to re-render. Similarly, if you convert a class component
-        // to a function, we want to invalidate the boundary.
-
-        var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
-
-        if (isNoLongerABoundary || didInvalidate) {
-          // We'll be conservative. The only case in which we won't do a full
-          // reload is if all parent modules are also refresh boundaries.
-          // In that case we'll add them to the current queue.
-          var parents = getParents();
-
-          if (parents.length === 0) {
-            // Looks like we bubbled to the root. Can't recover from that.
-            window.location.reload();
-            return;
-          }
-
-          return parents;
-        }
-
-        enqueueUpdate();
-      });
-    }
-  }
-};
-
-function isReactRefreshBoundary(exports) {
-  if (Refresh.isLikelyComponentType(exports)) {
-    return true;
-  }
-
-  if (exports == null || typeof exports !== 'object') {
-    // Exit if we can't iterate over exports.
-    return false;
-  }
-
-  var hasExports = false;
-  var areAllExportsComponents = true;
-
-  for (var key in exports) {
-    hasExports = true;
-
-    if (key === '__esModule') {
-      continue;
-    }
-
-    var desc = Object.getOwnPropertyDescriptor(exports, key);
-
-    if (desc && desc.get) {
-      // Don't invoke getters as they may have side effects.
-      return false;
-    }
-
-    var exportValue = exports[key];
-
-    if (!Refresh.isLikelyComponentType(exportValue)) {
-      areAllExportsComponents = false;
-    }
-  }
-
-  return hasExports && areAllExportsComponents;
-}
-
-function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
-  var prevSignature = getRefreshBoundarySignature(prevExports);
-  var nextSignature = getRefreshBoundarySignature(nextExports);
-
-  if (prevSignature.length !== nextSignature.length) {
-    return true;
-  }
-
-  for (var i = 0; i < nextSignature.length; i++) {
-    if (prevSignature[i] !== nextSignature[i]) {
-      return true;
-    }
-  }
-
-  return false;
-} // When this signature changes, it's unsafe to stop at this refresh boundary.
-
-
-function getRefreshBoundarySignature(exports) {
-  var signature = [];
-  signature.push(Refresh.getFamilyByType(exports));
-
-  if (exports == null || typeof exports !== 'object') {
-    // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return signature;
-  }
-
-  for (var key in exports) {
-    if (key === '__esModule') {
-      continue;
-    }
-
-    var desc = Object.getOwnPropertyDescriptor(exports, key);
-
-    if (desc && desc.get) {
-      continue;
-    }
-
-    var exportValue = exports[key];
-    signature.push(key);
-    signature.push(Refresh.getFamilyByType(exportValue));
-  }
-
-  return signature;
-}
-
-function registerExportsForReactRefresh(module) {
-  var exports = module.exports,
-      id = module.id;
-  Refresh.register(exports, id + ' %exports%');
-
-  if (exports == null || typeof exports !== 'object') {
-    // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return;
-  }
-
-  for (var key in exports) {
-    var desc = Object.getOwnPropertyDescriptor(exports, key);
-
-    if (desc && desc.get) {
-      // Don't invoke getters as they may have side effects.
-      continue;
-    }
-
-    var exportValue = exports[key];
-    Refresh.register(exportValue, id + ' %exports% ' + key);
-  }
-}
-},{"react-refresh/runtime":"6a2f65278353e882d7f14bcf674e0c85"}],"6a2f65278353e882d7f14bcf674e0c85":[function(require,module,exports) {
-'use strict';
-
-if ("development" === 'production') {
-  module.exports = require('./cjs/react-refresh-runtime.production.min.js');
-} else {
-  module.exports = require('./cjs/react-refresh-runtime.development.js');
-}
-},{"./cjs/react-refresh-runtime.development.js":"356d4ad522052a25469644186ca8abea"}],"356d4ad522052a25469644186ca8abea":[function(require,module,exports) {
-/** @license React v0.6.0
- * react-refresh-runtime.development.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-'use strict';
-
-if ("development" !== "production") {
-  (function () {
-    'use strict'; // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
-    // nor polyfill, then a plain number is used for performance.
-
-    var hasSymbol = typeof Symbol === 'function' && Symbol.for; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
-    // (unstable) APIs that have been removed. Can we remove the symbols?
-
-    var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
-    var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
-    var PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map; // We never remove these associations.
-    // It's OK to reference families, but use WeakMap/Set for types.
-
-    var allFamiliesByID = new Map();
-    var allFamiliesByType = new PossiblyWeakMap();
-    var allSignaturesByType = new PossiblyWeakMap(); // This WeakMap is read by React, so we only put families
-    // that have actually been edited here. This keeps checks fast.
-    // $FlowIssue
-
-    var updatedFamiliesByType = new PossiblyWeakMap(); // This is cleared on every performReactRefresh() call.
-    // It is an array of [Family, NextType] tuples.
-
-    var pendingUpdates = []; // This is injected by the renderer via DevTools global hook.
-
-    var helpersByRendererID = new Map();
-    var helpersByRoot = new Map(); // We keep track of mounted roots so we can schedule updates.
-
-    var mountedRoots = new Set(); // If a root captures an error, we add its element to this Map so we can retry on edit.
-
-    var failedRoots = new Map();
-    var didSomeRootFailOnMount = false;
-
-    function computeFullKey(signature) {
-      if (signature.fullKey !== null) {
-        return signature.fullKey;
-      }
-
-      var fullKey = signature.ownKey;
-      var hooks;
-
-      try {
-        hooks = signature.getCustomHooks();
-      } catch (err) {
-        // This can happen in an edge case, e.g. if expression like Foo.useSomething
-        // depends on Foo which is lazily initialized during rendering.
-        // In that case just assume we'll have to remount.
-        signature.forceReset = true;
-        signature.fullKey = fullKey;
-        return fullKey;
-      }
-
-      for (var i = 0; i < hooks.length; i++) {
-        var hook = hooks[i];
-
-        if (typeof hook !== 'function') {
-          // Something's wrong. Assume we need to remount.
-          signature.forceReset = true;
-          signature.fullKey = fullKey;
-          return fullKey;
-        }
-
-        var nestedHookSignature = allSignaturesByType.get(hook);
-
-        if (nestedHookSignature === undefined) {
-          // No signature means Hook wasn't in the source code, e.g. in a library.
-          // We'll skip it because we can assume it won't change during this session.
-          continue;
-        }
-
-        var nestedHookKey = computeFullKey(nestedHookSignature);
-
-        if (nestedHookSignature.forceReset) {
-          signature.forceReset = true;
-        }
-
-        fullKey += '\n---\n' + nestedHookKey;
-      }
-
-      signature.fullKey = fullKey;
-      return fullKey;
-    }
-
-    function haveEqualSignatures(prevType, nextType) {
-      var prevSignature = allSignaturesByType.get(prevType);
-      var nextSignature = allSignaturesByType.get(nextType);
-
-      if (prevSignature === undefined && nextSignature === undefined) {
-        return true;
-      }
-
-      if (prevSignature === undefined || nextSignature === undefined) {
-        return false;
-      }
-
-      if (computeFullKey(prevSignature) !== computeFullKey(nextSignature)) {
-        return false;
-      }
-
-      if (nextSignature.forceReset) {
-        return false;
-      }
-
-      return true;
-    }
-
-    function isReactClass(type) {
-      return type.prototype && type.prototype.isReactComponent;
-    }
-
-    function canPreserveStateBetween(prevType, nextType) {
-      if (isReactClass(prevType) || isReactClass(nextType)) {
-        return false;
-      }
-
-      if (haveEqualSignatures(prevType, nextType)) {
-        return true;
-      }
-
-      return false;
-    }
-
-    function resolveFamily(type) {
-      // Only check updated types to keep lookups fast.
-      return updatedFamiliesByType.get(type);
-    }
-
-    function performReactRefresh() {
-      {
-        if (pendingUpdates.length === 0) {
-          return null;
-        }
-
-        var staleFamilies = new Set();
-        var updatedFamilies = new Set();
-        var updates = pendingUpdates;
-        pendingUpdates = [];
-        updates.forEach(function (_ref) {
-          var family = _ref[0],
-              nextType = _ref[1]; // Now that we got a real edit, we can create associations
-          // that will be read by the React reconciler.
-
-          var prevType = family.current;
-          updatedFamiliesByType.set(prevType, family);
-          updatedFamiliesByType.set(nextType, family);
-          family.current = nextType; // Determine whether this should be a re-render or a re-mount.
-
-          if (canPreserveStateBetween(prevType, nextType)) {
-            updatedFamilies.add(family);
-          } else {
-            staleFamilies.add(family);
-          }
-        }); // TODO: rename these fields to something more meaningful.
-
-        var update = {
-          updatedFamilies: updatedFamilies,
-          // Families that will re-render preserving state
-          staleFamilies: staleFamilies // Families that will be remounted
-
-        };
-        helpersByRendererID.forEach(function (helpers) {
-          // Even if there are no roots, set the handler on first update.
-          // This ensures that if *new* roots are mounted, they'll use the resolve handler.
-          helpers.setRefreshHandler(resolveFamily);
-        });
-        var didError = false;
-        var firstError = null;
-        failedRoots.forEach(function (element, root) {
-          var helpers = helpersByRoot.get(root);
-
-          if (helpers === undefined) {
-            throw new Error('Could not find helpers for a root. This is a bug in React Refresh.');
-          }
-
-          try {
-            helpers.scheduleRoot(root, element);
-          } catch (err) {
-            if (!didError) {
-              didError = true;
-              firstError = err;
-            } // Keep trying other roots.
-
-          }
-        });
-        mountedRoots.forEach(function (root) {
-          var helpers = helpersByRoot.get(root);
-
-          if (helpers === undefined) {
-            throw new Error('Could not find helpers for a root. This is a bug in React Refresh.');
-          }
-
-          try {
-            helpers.scheduleRefresh(root, update);
-          } catch (err) {
-            if (!didError) {
-              didError = true;
-              firstError = err;
-            } // Keep trying other roots.
-
-          }
-        });
-
-        if (didError) {
-          throw firstError;
-        }
-
-        return update;
-      }
-    }
-
-    function register(type, id) {
-      {
-        if (type === null) {
-          return;
-        }
-
-        if (typeof type !== 'function' && typeof type !== 'object') {
-          return;
-        } // This can happen in an edge case, e.g. if we register
-        // return value of a HOC but it returns a cached component.
-        // Ignore anything but the first registration for each type.
-
-
-        if (allFamiliesByType.has(type)) {
-          return;
-        } // Create family or remember to update it.
-        // None of this bookkeeping affects reconciliation
-        // until the first performReactRefresh() call above.
-
-
-        var family = allFamiliesByID.get(id);
-
-        if (family === undefined) {
-          family = {
-            current: type
-          };
-          allFamiliesByID.set(id, family);
-        } else {
-          pendingUpdates.push([family, type]);
-        }
-
-        allFamiliesByType.set(type, family); // Visit inner types because we might not have registered them.
-
-        if (typeof type === 'object' && type !== null) {
-          switch (type.$$typeof) {
-            case REACT_FORWARD_REF_TYPE:
-              register(type.render, id + '$render');
-              break;
-
-            case REACT_MEMO_TYPE:
-              register(type.type, id + '$type');
-              break;
-          }
-        }
-      }
-    }
-
-    function setSignature(type, key) {
-      var forceReset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-      var getCustomHooks = arguments.length > 3 ? arguments[3] : undefined;
-      {
-        allSignaturesByType.set(type, {
-          forceReset: forceReset,
-          ownKey: key,
-          fullKey: null,
-          getCustomHooks: getCustomHooks || function () {
-            return [];
-          }
-        });
-      }
-    } // This is lazily called during first render for a type.
-    // It captures Hook list at that time so inline requires don't break comparisons.
-
-
-    function collectCustomHooksForSignature(type) {
-      {
-        var signature = allSignaturesByType.get(type);
-
-        if (signature !== undefined) {
-          computeFullKey(signature);
-        }
-      }
-    }
-
-    function getFamilyByID(id) {
-      {
-        return allFamiliesByID.get(id);
-      }
-    }
-
-    function getFamilyByType(type) {
-      {
-        return allFamiliesByType.get(type);
-      }
-    }
-
-    function findAffectedHostInstances(families) {
-      {
-        var affectedInstances = new Set();
-        mountedRoots.forEach(function (root) {
-          var helpers = helpersByRoot.get(root);
-
-          if (helpers === undefined) {
-            throw new Error('Could not find helpers for a root. This is a bug in React Refresh.');
-          }
-
-          var instancesForRoot = helpers.findHostInstancesForRefresh(root, families);
-          instancesForRoot.forEach(function (inst) {
-            affectedInstances.add(inst);
-          });
-        });
-        return affectedInstances;
-      }
-    }
-
-    function injectIntoGlobalHook(globalObject) {
-      {
-        // For React Native, the global hook will be set up by require('react-devtools-core').
-        // That code will run before us. So we need to monkeypatch functions on existing hook.
-        // For React Web, the global hook will be set up by the extension.
-        // This will also run before us.
-        var hook = globalObject.__REACT_DEVTOOLS_GLOBAL_HOOK__;
-
-        if (hook === undefined) {
-          // However, if there is no DevTools extension, we'll need to set up the global hook ourselves.
-          // Note that in this case it's important that renderer code runs *after* this method call.
-          // Otherwise, the renderer will think that there is no global hook, and won't do the injection.
-          var nextID = 0;
-          globalObject.__REACT_DEVTOOLS_GLOBAL_HOOK__ = hook = {
-            supportsFiber: true,
-            inject: function (injected) {
-              return nextID++;
-            },
-            onCommitFiberRoot: function (id, root, maybePriorityLevel, didError) {},
-            onCommitFiberUnmount: function () {}
-          };
-        } // Here, we just want to get a reference to scheduleRefresh.
-
-
-        var oldInject = hook.inject;
-
-        hook.inject = function (injected) {
-          var id = oldInject.apply(this, arguments);
-
-          if (typeof injected.scheduleRefresh === 'function' && typeof injected.setRefreshHandler === 'function') {
-            // This version supports React Refresh.
-            helpersByRendererID.set(id, injected);
-          }
-
-          return id;
-        }; // We also want to track currently mounted roots.
-
-
-        var oldOnCommitFiberRoot = hook.onCommitFiberRoot;
-
-        hook.onCommitFiberRoot = function (id, root, maybePriorityLevel, didError) {
-          var helpers = helpersByRendererID.get(id);
-
-          if (helpers === undefined) {
-            return;
-          }
-
-          helpersByRoot.set(root, helpers);
-          var current = root.current;
-          var alternate = current.alternate; // We need to determine whether this root has just (un)mounted.
-          // This logic is copy-pasted from similar logic in the DevTools backend.
-          // If this breaks with some refactoring, you'll want to update DevTools too.
-
-          if (alternate !== null) {
-            var wasMounted = alternate.memoizedState != null && alternate.memoizedState.element != null;
-            var isMounted = current.memoizedState != null && current.memoizedState.element != null;
-
-            if (!wasMounted && isMounted) {
-              // Mount a new root.
-              mountedRoots.add(root);
-              failedRoots.delete(root);
-            } else if (wasMounted && isMounted) {// Update an existing root.
-              // This doesn't affect our mounted root Set.
-            } else if (wasMounted && !isMounted) {
-              // Unmount an existing root.
-              mountedRoots.delete(root);
-
-              if (didError) {
-                // We'll remount it on future edits.
-                // Remember what was rendered so we can restore it.
-                failedRoots.set(root, alternate.memoizedState.element);
-              } else {
-                helpersByRoot.delete(root);
-              }
-            } else if (!wasMounted && !isMounted) {
-              if (didError && !failedRoots.has(root)) {
-                // The root had an error during the initial mount.
-                // We can't read its last element from the memoized state
-                // because there was no previously committed alternate.
-                // Ideally, it would be nice if we had a way to extract
-                // the last attempted rendered element, but accessing the update queue
-                // would tie this package too closely to the reconciler version.
-                // So instead, we just set a flag.
-                // TODO: Maybe we could fix this as the same time as when we fix
-                // DevTools to not depend on `alternate.memoizedState.element`.
-                didSomeRootFailOnMount = true;
-              }
-            }
-          } else {
-            // Mount a new root.
-            mountedRoots.add(root);
-          }
-
-          return oldOnCommitFiberRoot.apply(this, arguments);
-        };
-      }
-    }
-
-    function hasUnrecoverableErrors() {
-      return didSomeRootFailOnMount;
-    } // Exposed for testing.
-
-
-    function _getMountedRootCount() {
-      {
-        return mountedRoots.size;
-      }
-    } // This is a wrapper over more primitive functions for setting signature.
-    // Signatures let us decide whether the Hook order has changed on refresh.
-    //
-    // This function is intended to be used as a transform target, e.g.:
-    // var _s = createSignatureFunctionForTransform()
-    //
-    // function Hello() {
-    //   const [foo, setFoo] = useState(0);
-    //   const value = useCustomHook();
-    //   _s(); /* Second call triggers collecting the custom Hook list.
-    //          * This doesn't happen during the module evaluation because we
-    //          * don't want to change the module order with inline requires.
-    //          * Next calls are noops. */
-    //   return <h1>Hi</h1>;
-    // }
-    //
-    // /* First call specifies the signature: */
-    // _s(
-    //   Hello,
-    //   'useState{[foo, setFoo]}(0)',
-    //   () => [useCustomHook], /* Lazy to avoid triggering inline requires */
-    // );
-
-
-    function createSignatureFunctionForTransform() {
-      {
-        var call = 0;
-        var savedType;
-        var hasCustomHooks;
-        return function (type, key, forceReset, getCustomHooks) {
-          switch (call++) {
-            case 0:
-              savedType = type;
-              hasCustomHooks = typeof getCustomHooks === 'function';
-              setSignature(type, key, forceReset, getCustomHooks);
-              break;
-
-            case 1:
-              if (hasCustomHooks) {
-                collectCustomHooksForSignature(savedType);
-              }
-
-              break;
-          }
-
-          return type;
-        };
-      }
-    }
-
-    function isLikelyComponentType(type) {
-      {
-        switch (typeof type) {
-          case 'function':
-            {
-              // First, deal with classes.
-              if (type.prototype != null) {
-                if (type.prototype.isReactComponent) {
-                  // React class.
-                  return true;
-                }
-
-                var ownNames = Object.getOwnPropertyNames(type.prototype);
-
-                if (ownNames.length > 1 || ownNames[0] !== 'constructor') {
-                  // This looks like a class.
-                  return false;
-                } // eslint-disable-next-line no-proto
-
-
-                if (type.prototype.__proto__ !== Object.prototype) {
-                  // It has a superclass.
-                  return false;
-                } // Pass through.
-                // This looks like a regular function with empty prototype.
-
-              } // For plain functions and arrows, use name as a heuristic.
-
-
-              var name = type.name || type.displayName;
-              return typeof name === 'string' && /^[A-Z]/.test(name);
-            }
-
-          case 'object':
-            {
-              if (type != null) {
-                switch (type.$$typeof) {
-                  case REACT_FORWARD_REF_TYPE:
-                  case REACT_MEMO_TYPE:
-                    // Definitely React components.
-                    return true;
-
-                  default:
-                    return false;
-                }
-              }
-
-              return false;
-            }
-
-          default:
-            {
-              return false;
-            }
-        }
-      }
-    }
-
-    var ReactFreshRuntime = Object.freeze({
-      performReactRefresh: performReactRefresh,
-      register: register,
-      setSignature: setSignature,
-      collectCustomHooksForSignature: collectCustomHooksForSignature,
-      getFamilyByID: getFamilyByID,
-      getFamilyByType: getFamilyByType,
-      findAffectedHostInstances: findAffectedHostInstances,
-      injectIntoGlobalHook: injectIntoGlobalHook,
-      hasUnrecoverableErrors: hasUnrecoverableErrors,
-      _getMountedRootCount: _getMountedRootCount,
-      createSignatureFunctionForTransform: createSignatureFunctionForTransform,
-      isLikelyComponentType: isLikelyComponentType
-    }); // This is hacky but makes it work with both Rollup and Jest.
-
-    var runtime = ReactFreshRuntime.default || ReactFreshRuntime;
-    module.exports = runtime;
-  })();
-}
 },{}],"651fc26ccddec1886b73afbdef9f97ee":[function(require,module,exports) {
 'use strict';
 
@@ -30894,6 +30092,1438 @@ if ("development" !== "production") {
     exports.unstable_wrap = unstable_wrap;
   })();
 }
-},{}]},{},["74b007429d368fe9a30eada9ae258655","c00e607576b6da73f3471278d158f50f"], null)
+},{}],"a7f9e5fcd97d33bf9e554d6c06722627":[function(require,module,exports) {
+"use strict";
+
+var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = App;
+
+  var _react = _interopRequireWildcard(require("react"));
+
+  var _components = require("./components");
+
+  var _sections = require("./sections");
+
+  var _jsxFileName = "C:\\Dev\\Web\\Frontend-Mentor-Projects\\Crowdfunding-Product-Page\\src\\App.js";
+
+  function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+  function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+  function App() {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_components.Header, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 18,
+        columnNumber: 4
+      }
+    }, /*#__PURE__*/_react.default.createElement(_components.Nav, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 19,
+        columnNumber: 5
+      }
+    })), /*#__PURE__*/_react.default.createElement(_sections.Title, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 22,
+        columnNumber: 4
+      }
+    }), /*#__PURE__*/_react.default.createElement(_sections.Progress, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 23,
+        columnNumber: 4
+      }
+    }), /*#__PURE__*/_react.default.createElement(_sections.Main, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 24,
+        columnNumber: 4
+      }
+    }));
+  }
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"c3469d175e6ab91a6ebac2096f1b2459","./components":"0305b5e98d355b2a177208259ce0ac88","./sections":"045b432c043a2f2292be35b558e230be","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"304bfcdf97c182c258933a329c4fc1cd"}],"0305b5e98d355b2a177208259ce0ac88":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Nav", {
+  enumerable: true,
+  get: function () {
+    return _Nav.default;
+  }
+});
+Object.defineProperty(exports, "Header", {
+  enumerable: true,
+  get: function () {
+    return _Header.default;
+  }
+});
+Object.defineProperty(exports, "Bookmark", {
+  enumerable: true,
+  get: function () {
+    return _Bookmark.default;
+  }
+});
+Object.defineProperty(exports, "Pledge", {
+  enumerable: true,
+  get: function () {
+    return _Pledge.default;
+  }
+});
+Object.defineProperty(exports, "Button", {
+  enumerable: true,
+  get: function () {
+    return _Button.default;
+  }
+});
+
+var _Nav = _interopRequireDefault(require("./Nav/Nav"));
+
+var _Header = _interopRequireDefault(require("./Header/Header"));
+
+var _Bookmark = _interopRequireDefault(require("./Bookmark/Bookmark"));
+
+var _Pledge = _interopRequireDefault(require("./Pledge/Pledge"));
+
+var _Button = _interopRequireDefault(require("./Button/Button"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./Nav/Nav":"1f963b237814ce794f8707127d05a3ef","./Header/Header":"c7f1120f38e7fc2a4bf998352274ad5f","./Bookmark/Bookmark":"48712a912d03b9c4de7719ee06bd1d6e","./Pledge/Pledge":"3fc5b29048a32890f0bf8dc234cc8def","./Button/Button":"74bb31ca34fad88b4da4f6f0e48d578d"}],"1f963b237814ce794f8707127d05a3ef":[function(require,module,exports) {
+"use strict";
+
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Nav;
+
+  var _react = _interopRequireDefault(require("react"));
+
+  var _jsxFileName = "C:\\Dev\\Web\\Frontend-Mentor-Projects\\Crowdfunding-Product-Page\\src\\components\\Nav\\Nav.js";
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function Nav() {
+    return /*#__PURE__*/_react.default.createElement("h2", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 6,
+        columnNumber: 3
+      }
+    }, "Nav");
+  }
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"c3469d175e6ab91a6ebac2096f1b2459","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"304bfcdf97c182c258933a329c4fc1cd"}],"304bfcdf97c182c258933a329c4fc1cd":[function(require,module,exports) {
+"use strict";
+
+var Refresh = require('react-refresh/runtime');
+
+function debounce(func, delay) {
+  if ("development" === 'test') {
+    return function (args) {
+      func.call(null, args);
+    };
+  } else {
+    var timeout = undefined;
+    return function (args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(function () {
+        timeout = undefined;
+        func.call(null, args);
+      }, delay);
+    };
+  }
+}
+
+var enqueueUpdate = debounce(function () {
+  Refresh.performReactRefresh();
+}, 30); // Everthing below is either adapted or copied from
+// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
+// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
+
+module.exports.prelude = function (module) {
+  window.$RefreshReg$ = function (type, id) {
+    Refresh.register(type, module.id + ' ' + id);
+  };
+
+  window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
+};
+
+module.exports.postlude = function (module) {
+  if (isReactRefreshBoundary(module.exports)) {
+    registerExportsForReactRefresh(module);
+
+    if (module.hot) {
+      module.hot.dispose(function (data) {
+        if (Refresh.hasUnrecoverableErrors()) {
+          window.location.reload();
+        }
+
+        data.prevExports = module.exports;
+      });
+      module.hot.accept(function (getParents) {
+        var prevExports = module.hot.data.prevExports;
+        var nextExports = module.exports; // Since we just executed the code for it, it's possible
+        // that the new exports make it ineligible for being a boundary.
+
+        var isNoLongerABoundary = !isReactRefreshBoundary(nextExports); // It can also become ineligible if its exports are incompatible
+        // with the previous exports.
+        // For example, if you add/remove/change exports, we'll want
+        // to re-execute the importing modules, and force those components
+        // to re-render. Similarly, if you convert a class component
+        // to a function, we want to invalidate the boundary.
+
+        var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
+
+        if (isNoLongerABoundary || didInvalidate) {
+          // We'll be conservative. The only case in which we won't do a full
+          // reload is if all parent modules are also refresh boundaries.
+          // In that case we'll add them to the current queue.
+          var parents = getParents();
+
+          if (parents.length === 0) {
+            // Looks like we bubbled to the root. Can't recover from that.
+            window.location.reload();
+            return;
+          }
+
+          return parents;
+        }
+
+        enqueueUpdate();
+      });
+    }
+  }
+};
+
+function isReactRefreshBoundary(exports) {
+  if (Refresh.isLikelyComponentType(exports)) {
+    return true;
+  }
+
+  if (exports == null || typeof exports !== 'object') {
+    // Exit if we can't iterate over exports.
+    return false;
+  }
+
+  var hasExports = false;
+  var areAllExportsComponents = true;
+
+  for (var key in exports) {
+    hasExports = true;
+
+    if (key === '__esModule') {
+      continue;
+    }
+
+    var desc = Object.getOwnPropertyDescriptor(exports, key);
+
+    if (desc && desc.get) {
+      // Don't invoke getters as they may have side effects.
+      return false;
+    }
+
+    var exportValue = exports[key];
+
+    if (!Refresh.isLikelyComponentType(exportValue)) {
+      areAllExportsComponents = false;
+    }
+  }
+
+  return hasExports && areAllExportsComponents;
+}
+
+function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
+  var prevSignature = getRefreshBoundarySignature(prevExports);
+  var nextSignature = getRefreshBoundarySignature(nextExports);
+
+  if (prevSignature.length !== nextSignature.length) {
+    return true;
+  }
+
+  for (var i = 0; i < nextSignature.length; i++) {
+    if (prevSignature[i] !== nextSignature[i]) {
+      return true;
+    }
+  }
+
+  return false;
+} // When this signature changes, it's unsafe to stop at this refresh boundary.
+
+
+function getRefreshBoundarySignature(exports) {
+  var signature = [];
+  signature.push(Refresh.getFamilyByType(exports));
+
+  if (exports == null || typeof exports !== 'object') {
+    // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return signature;
+  }
+
+  for (var key in exports) {
+    if (key === '__esModule') {
+      continue;
+    }
+
+    var desc = Object.getOwnPropertyDescriptor(exports, key);
+
+    if (desc && desc.get) {
+      continue;
+    }
+
+    var exportValue = exports[key];
+    signature.push(key);
+    signature.push(Refresh.getFamilyByType(exportValue));
+  }
+
+  return signature;
+}
+
+function registerExportsForReactRefresh(module) {
+  var exports = module.exports,
+      id = module.id;
+  Refresh.register(exports, id + ' %exports%');
+
+  if (exports == null || typeof exports !== 'object') {
+    // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return;
+  }
+
+  for (var key in exports) {
+    var desc = Object.getOwnPropertyDescriptor(exports, key);
+
+    if (desc && desc.get) {
+      // Don't invoke getters as they may have side effects.
+      continue;
+    }
+
+    var exportValue = exports[key];
+    Refresh.register(exportValue, id + ' %exports% ' + key);
+  }
+}
+},{"react-refresh/runtime":"6a2f65278353e882d7f14bcf674e0c85"}],"6a2f65278353e882d7f14bcf674e0c85":[function(require,module,exports) {
+'use strict';
+
+if ("development" === 'production') {
+  module.exports = require('./cjs/react-refresh-runtime.production.min.js');
+} else {
+  module.exports = require('./cjs/react-refresh-runtime.development.js');
+}
+},{"./cjs/react-refresh-runtime.development.js":"356d4ad522052a25469644186ca8abea"}],"356d4ad522052a25469644186ca8abea":[function(require,module,exports) {
+/** @license React v0.6.0
+ * react-refresh-runtime.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+'use strict';
+
+if ("development" !== "production") {
+  (function () {
+    'use strict'; // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+    // nor polyfill, then a plain number is used for performance.
+
+    var hasSymbol = typeof Symbol === 'function' && Symbol.for; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+    // (unstable) APIs that have been removed. Can we remove the symbols?
+
+    var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
+    var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
+    var PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map; // We never remove these associations.
+    // It's OK to reference families, but use WeakMap/Set for types.
+
+    var allFamiliesByID = new Map();
+    var allFamiliesByType = new PossiblyWeakMap();
+    var allSignaturesByType = new PossiblyWeakMap(); // This WeakMap is read by React, so we only put families
+    // that have actually been edited here. This keeps checks fast.
+    // $FlowIssue
+
+    var updatedFamiliesByType = new PossiblyWeakMap(); // This is cleared on every performReactRefresh() call.
+    // It is an array of [Family, NextType] tuples.
+
+    var pendingUpdates = []; // This is injected by the renderer via DevTools global hook.
+
+    var helpersByRendererID = new Map();
+    var helpersByRoot = new Map(); // We keep track of mounted roots so we can schedule updates.
+
+    var mountedRoots = new Set(); // If a root captures an error, we add its element to this Map so we can retry on edit.
+
+    var failedRoots = new Map();
+    var didSomeRootFailOnMount = false;
+
+    function computeFullKey(signature) {
+      if (signature.fullKey !== null) {
+        return signature.fullKey;
+      }
+
+      var fullKey = signature.ownKey;
+      var hooks;
+
+      try {
+        hooks = signature.getCustomHooks();
+      } catch (err) {
+        // This can happen in an edge case, e.g. if expression like Foo.useSomething
+        // depends on Foo which is lazily initialized during rendering.
+        // In that case just assume we'll have to remount.
+        signature.forceReset = true;
+        signature.fullKey = fullKey;
+        return fullKey;
+      }
+
+      for (var i = 0; i < hooks.length; i++) {
+        var hook = hooks[i];
+
+        if (typeof hook !== 'function') {
+          // Something's wrong. Assume we need to remount.
+          signature.forceReset = true;
+          signature.fullKey = fullKey;
+          return fullKey;
+        }
+
+        var nestedHookSignature = allSignaturesByType.get(hook);
+
+        if (nestedHookSignature === undefined) {
+          // No signature means Hook wasn't in the source code, e.g. in a library.
+          // We'll skip it because we can assume it won't change during this session.
+          continue;
+        }
+
+        var nestedHookKey = computeFullKey(nestedHookSignature);
+
+        if (nestedHookSignature.forceReset) {
+          signature.forceReset = true;
+        }
+
+        fullKey += '\n---\n' + nestedHookKey;
+      }
+
+      signature.fullKey = fullKey;
+      return fullKey;
+    }
+
+    function haveEqualSignatures(prevType, nextType) {
+      var prevSignature = allSignaturesByType.get(prevType);
+      var nextSignature = allSignaturesByType.get(nextType);
+
+      if (prevSignature === undefined && nextSignature === undefined) {
+        return true;
+      }
+
+      if (prevSignature === undefined || nextSignature === undefined) {
+        return false;
+      }
+
+      if (computeFullKey(prevSignature) !== computeFullKey(nextSignature)) {
+        return false;
+      }
+
+      if (nextSignature.forceReset) {
+        return false;
+      }
+
+      return true;
+    }
+
+    function isReactClass(type) {
+      return type.prototype && type.prototype.isReactComponent;
+    }
+
+    function canPreserveStateBetween(prevType, nextType) {
+      if (isReactClass(prevType) || isReactClass(nextType)) {
+        return false;
+      }
+
+      if (haveEqualSignatures(prevType, nextType)) {
+        return true;
+      }
+
+      return false;
+    }
+
+    function resolveFamily(type) {
+      // Only check updated types to keep lookups fast.
+      return updatedFamiliesByType.get(type);
+    }
+
+    function performReactRefresh() {
+      {
+        if (pendingUpdates.length === 0) {
+          return null;
+        }
+
+        var staleFamilies = new Set();
+        var updatedFamilies = new Set();
+        var updates = pendingUpdates;
+        pendingUpdates = [];
+        updates.forEach(function (_ref) {
+          var family = _ref[0],
+              nextType = _ref[1]; // Now that we got a real edit, we can create associations
+          // that will be read by the React reconciler.
+
+          var prevType = family.current;
+          updatedFamiliesByType.set(prevType, family);
+          updatedFamiliesByType.set(nextType, family);
+          family.current = nextType; // Determine whether this should be a re-render or a re-mount.
+
+          if (canPreserveStateBetween(prevType, nextType)) {
+            updatedFamilies.add(family);
+          } else {
+            staleFamilies.add(family);
+          }
+        }); // TODO: rename these fields to something more meaningful.
+
+        var update = {
+          updatedFamilies: updatedFamilies,
+          // Families that will re-render preserving state
+          staleFamilies: staleFamilies // Families that will be remounted
+
+        };
+        helpersByRendererID.forEach(function (helpers) {
+          // Even if there are no roots, set the handler on first update.
+          // This ensures that if *new* roots are mounted, they'll use the resolve handler.
+          helpers.setRefreshHandler(resolveFamily);
+        });
+        var didError = false;
+        var firstError = null;
+        failedRoots.forEach(function (element, root) {
+          var helpers = helpersByRoot.get(root);
+
+          if (helpers === undefined) {
+            throw new Error('Could not find helpers for a root. This is a bug in React Refresh.');
+          }
+
+          try {
+            helpers.scheduleRoot(root, element);
+          } catch (err) {
+            if (!didError) {
+              didError = true;
+              firstError = err;
+            } // Keep trying other roots.
+
+          }
+        });
+        mountedRoots.forEach(function (root) {
+          var helpers = helpersByRoot.get(root);
+
+          if (helpers === undefined) {
+            throw new Error('Could not find helpers for a root. This is a bug in React Refresh.');
+          }
+
+          try {
+            helpers.scheduleRefresh(root, update);
+          } catch (err) {
+            if (!didError) {
+              didError = true;
+              firstError = err;
+            } // Keep trying other roots.
+
+          }
+        });
+
+        if (didError) {
+          throw firstError;
+        }
+
+        return update;
+      }
+    }
+
+    function register(type, id) {
+      {
+        if (type === null) {
+          return;
+        }
+
+        if (typeof type !== 'function' && typeof type !== 'object') {
+          return;
+        } // This can happen in an edge case, e.g. if we register
+        // return value of a HOC but it returns a cached component.
+        // Ignore anything but the first registration for each type.
+
+
+        if (allFamiliesByType.has(type)) {
+          return;
+        } // Create family or remember to update it.
+        // None of this bookkeeping affects reconciliation
+        // until the first performReactRefresh() call above.
+
+
+        var family = allFamiliesByID.get(id);
+
+        if (family === undefined) {
+          family = {
+            current: type
+          };
+          allFamiliesByID.set(id, family);
+        } else {
+          pendingUpdates.push([family, type]);
+        }
+
+        allFamiliesByType.set(type, family); // Visit inner types because we might not have registered them.
+
+        if (typeof type === 'object' && type !== null) {
+          switch (type.$$typeof) {
+            case REACT_FORWARD_REF_TYPE:
+              register(type.render, id + '$render');
+              break;
+
+            case REACT_MEMO_TYPE:
+              register(type.type, id + '$type');
+              break;
+          }
+        }
+      }
+    }
+
+    function setSignature(type, key) {
+      var forceReset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+      var getCustomHooks = arguments.length > 3 ? arguments[3] : undefined;
+      {
+        allSignaturesByType.set(type, {
+          forceReset: forceReset,
+          ownKey: key,
+          fullKey: null,
+          getCustomHooks: getCustomHooks || function () {
+            return [];
+          }
+        });
+      }
+    } // This is lazily called during first render for a type.
+    // It captures Hook list at that time so inline requires don't break comparisons.
+
+
+    function collectCustomHooksForSignature(type) {
+      {
+        var signature = allSignaturesByType.get(type);
+
+        if (signature !== undefined) {
+          computeFullKey(signature);
+        }
+      }
+    }
+
+    function getFamilyByID(id) {
+      {
+        return allFamiliesByID.get(id);
+      }
+    }
+
+    function getFamilyByType(type) {
+      {
+        return allFamiliesByType.get(type);
+      }
+    }
+
+    function findAffectedHostInstances(families) {
+      {
+        var affectedInstances = new Set();
+        mountedRoots.forEach(function (root) {
+          var helpers = helpersByRoot.get(root);
+
+          if (helpers === undefined) {
+            throw new Error('Could not find helpers for a root. This is a bug in React Refresh.');
+          }
+
+          var instancesForRoot = helpers.findHostInstancesForRefresh(root, families);
+          instancesForRoot.forEach(function (inst) {
+            affectedInstances.add(inst);
+          });
+        });
+        return affectedInstances;
+      }
+    }
+
+    function injectIntoGlobalHook(globalObject) {
+      {
+        // For React Native, the global hook will be set up by require('react-devtools-core').
+        // That code will run before us. So we need to monkeypatch functions on existing hook.
+        // For React Web, the global hook will be set up by the extension.
+        // This will also run before us.
+        var hook = globalObject.__REACT_DEVTOOLS_GLOBAL_HOOK__;
+
+        if (hook === undefined) {
+          // However, if there is no DevTools extension, we'll need to set up the global hook ourselves.
+          // Note that in this case it's important that renderer code runs *after* this method call.
+          // Otherwise, the renderer will think that there is no global hook, and won't do the injection.
+          var nextID = 0;
+          globalObject.__REACT_DEVTOOLS_GLOBAL_HOOK__ = hook = {
+            supportsFiber: true,
+            inject: function (injected) {
+              return nextID++;
+            },
+            onCommitFiberRoot: function (id, root, maybePriorityLevel, didError) {},
+            onCommitFiberUnmount: function () {}
+          };
+        } // Here, we just want to get a reference to scheduleRefresh.
+
+
+        var oldInject = hook.inject;
+
+        hook.inject = function (injected) {
+          var id = oldInject.apply(this, arguments);
+
+          if (typeof injected.scheduleRefresh === 'function' && typeof injected.setRefreshHandler === 'function') {
+            // This version supports React Refresh.
+            helpersByRendererID.set(id, injected);
+          }
+
+          return id;
+        }; // We also want to track currently mounted roots.
+
+
+        var oldOnCommitFiberRoot = hook.onCommitFiberRoot;
+
+        hook.onCommitFiberRoot = function (id, root, maybePriorityLevel, didError) {
+          var helpers = helpersByRendererID.get(id);
+
+          if (helpers === undefined) {
+            return;
+          }
+
+          helpersByRoot.set(root, helpers);
+          var current = root.current;
+          var alternate = current.alternate; // We need to determine whether this root has just (un)mounted.
+          // This logic is copy-pasted from similar logic in the DevTools backend.
+          // If this breaks with some refactoring, you'll want to update DevTools too.
+
+          if (alternate !== null) {
+            var wasMounted = alternate.memoizedState != null && alternate.memoizedState.element != null;
+            var isMounted = current.memoizedState != null && current.memoizedState.element != null;
+
+            if (!wasMounted && isMounted) {
+              // Mount a new root.
+              mountedRoots.add(root);
+              failedRoots.delete(root);
+            } else if (wasMounted && isMounted) {// Update an existing root.
+              // This doesn't affect our mounted root Set.
+            } else if (wasMounted && !isMounted) {
+              // Unmount an existing root.
+              mountedRoots.delete(root);
+
+              if (didError) {
+                // We'll remount it on future edits.
+                // Remember what was rendered so we can restore it.
+                failedRoots.set(root, alternate.memoizedState.element);
+              } else {
+                helpersByRoot.delete(root);
+              }
+            } else if (!wasMounted && !isMounted) {
+              if (didError && !failedRoots.has(root)) {
+                // The root had an error during the initial mount.
+                // We can't read its last element from the memoized state
+                // because there was no previously committed alternate.
+                // Ideally, it would be nice if we had a way to extract
+                // the last attempted rendered element, but accessing the update queue
+                // would tie this package too closely to the reconciler version.
+                // So instead, we just set a flag.
+                // TODO: Maybe we could fix this as the same time as when we fix
+                // DevTools to not depend on `alternate.memoizedState.element`.
+                didSomeRootFailOnMount = true;
+              }
+            }
+          } else {
+            // Mount a new root.
+            mountedRoots.add(root);
+          }
+
+          return oldOnCommitFiberRoot.apply(this, arguments);
+        };
+      }
+    }
+
+    function hasUnrecoverableErrors() {
+      return didSomeRootFailOnMount;
+    } // Exposed for testing.
+
+
+    function _getMountedRootCount() {
+      {
+        return mountedRoots.size;
+      }
+    } // This is a wrapper over more primitive functions for setting signature.
+    // Signatures let us decide whether the Hook order has changed on refresh.
+    //
+    // This function is intended to be used as a transform target, e.g.:
+    // var _s = createSignatureFunctionForTransform()
+    //
+    // function Hello() {
+    //   const [foo, setFoo] = useState(0);
+    //   const value = useCustomHook();
+    //   _s(); /* Second call triggers collecting the custom Hook list.
+    //          * This doesn't happen during the module evaluation because we
+    //          * don't want to change the module order with inline requires.
+    //          * Next calls are noops. */
+    //   return <h1>Hi</h1>;
+    // }
+    //
+    // /* First call specifies the signature: */
+    // _s(
+    //   Hello,
+    //   'useState{[foo, setFoo]}(0)',
+    //   () => [useCustomHook], /* Lazy to avoid triggering inline requires */
+    // );
+
+
+    function createSignatureFunctionForTransform() {
+      {
+        var call = 0;
+        var savedType;
+        var hasCustomHooks;
+        return function (type, key, forceReset, getCustomHooks) {
+          switch (call++) {
+            case 0:
+              savedType = type;
+              hasCustomHooks = typeof getCustomHooks === 'function';
+              setSignature(type, key, forceReset, getCustomHooks);
+              break;
+
+            case 1:
+              if (hasCustomHooks) {
+                collectCustomHooksForSignature(savedType);
+              }
+
+              break;
+          }
+
+          return type;
+        };
+      }
+    }
+
+    function isLikelyComponentType(type) {
+      {
+        switch (typeof type) {
+          case 'function':
+            {
+              // First, deal with classes.
+              if (type.prototype != null) {
+                if (type.prototype.isReactComponent) {
+                  // React class.
+                  return true;
+                }
+
+                var ownNames = Object.getOwnPropertyNames(type.prototype);
+
+                if (ownNames.length > 1 || ownNames[0] !== 'constructor') {
+                  // This looks like a class.
+                  return false;
+                } // eslint-disable-next-line no-proto
+
+
+                if (type.prototype.__proto__ !== Object.prototype) {
+                  // It has a superclass.
+                  return false;
+                } // Pass through.
+                // This looks like a regular function with empty prototype.
+
+              } // For plain functions and arrows, use name as a heuristic.
+
+
+              var name = type.name || type.displayName;
+              return typeof name === 'string' && /^[A-Z]/.test(name);
+            }
+
+          case 'object':
+            {
+              if (type != null) {
+                switch (type.$$typeof) {
+                  case REACT_FORWARD_REF_TYPE:
+                  case REACT_MEMO_TYPE:
+                    // Definitely React components.
+                    return true;
+
+                  default:
+                    return false;
+                }
+              }
+
+              return false;
+            }
+
+          default:
+            {
+              return false;
+            }
+        }
+      }
+    }
+
+    var ReactFreshRuntime = Object.freeze({
+      performReactRefresh: performReactRefresh,
+      register: register,
+      setSignature: setSignature,
+      collectCustomHooksForSignature: collectCustomHooksForSignature,
+      getFamilyByID: getFamilyByID,
+      getFamilyByType: getFamilyByType,
+      findAffectedHostInstances: findAffectedHostInstances,
+      injectIntoGlobalHook: injectIntoGlobalHook,
+      hasUnrecoverableErrors: hasUnrecoverableErrors,
+      _getMountedRootCount: _getMountedRootCount,
+      createSignatureFunctionForTransform: createSignatureFunctionForTransform,
+      isLikelyComponentType: isLikelyComponentType
+    }); // This is hacky but makes it work with both Rollup and Jest.
+
+    var runtime = ReactFreshRuntime.default || ReactFreshRuntime;
+    module.exports = runtime;
+  })();
+}
+},{}],"c7f1120f38e7fc2a4bf998352274ad5f":[function(require,module,exports) {
+"use strict";
+
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Header;
+
+  var _react = _interopRequireDefault(require("react"));
+
+  var _jsxFileName = "C:\\Dev\\Web\\Frontend-Mentor-Projects\\Crowdfunding-Product-Page\\src\\components\\Header\\Header.js";
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function Header({
+    children,
+    ...props
+  }) {
+    return /*#__PURE__*/_react.default.createElement("header", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 6,
+        columnNumber: 3
+      }
+    }, children);
+  }
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"c3469d175e6ab91a6ebac2096f1b2459","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"304bfcdf97c182c258933a329c4fc1cd"}],"48712a912d03b9c4de7719ee06bd1d6e":[function(require,module,exports) {
+"use strict";
+
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Bookmark;
+
+  var _react = _interopRequireDefault(require("react"));
+
+  var _jsxFileName = "C:\\Dev\\Web\\Frontend-Mentor-Projects\\Crowdfunding-Product-Page\\src\\components\\Bookmark\\Bookmark.js";
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function Bookmark() {
+    return /*#__PURE__*/_react.default.createElement("div", {
+      className: "bookmark",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 6,
+        columnNumber: 3
+      }
+    }, "Bookmark");
+  }
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"c3469d175e6ab91a6ebac2096f1b2459","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"304bfcdf97c182c258933a329c4fc1cd"}],"3fc5b29048a32890f0bf8dc234cc8def":[function(require,module,exports) {
+"use strict";
+
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Pledge;
+
+  var _react = _interopRequireDefault(require("react"));
+
+  var _useTiers = _interopRequireDefault(require("../../hooks/useTiers"));
+
+  var _index = require("../index");
+
+  var _jsxFileName = "C:\\Dev\\Web\\Frontend-Mentor-Projects\\Crowdfunding-Product-Page\\src\\components\\Pledge\\Pledge.js";
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function Pledge({
+    tier,
+    ...props
+  }) {
+    const {
+      tiers,
+      updateStock
+    } = (0, _useTiers.default)();
+    const {
+      title,
+      description,
+      price,
+      stock
+    } = tiers[tier];
+
+    function makePledge() {
+      console.log("Making pledge...");
+    }
+
+    return /*#__PURE__*/_react.default.createElement("div", {
+      className: "pledge",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 16,
+        columnNumber: 3
+      }
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "pledge__header",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 17,
+        columnNumber: 4
+      }
+    }, /*#__PURE__*/_react.default.createElement("h3", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 18,
+        columnNumber: 5
+      }
+    }, title), /*#__PURE__*/_react.default.createElement("p", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 19,
+        columnNumber: 5
+      }
+    }, "Pledge $", price, " or more")), /*#__PURE__*/_react.default.createElement("p", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 22,
+        columnNumber: 4
+      }
+    }, description), /*#__PURE__*/_react.default.createElement("div", {
+      className: "pledge__cta",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 24,
+        columnNumber: 4
+      }
+    }, /*#__PURE__*/_react.default.createElement("p", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 25,
+        columnNumber: 5
+      }
+    }, stock, " ", /*#__PURE__*/_react.default.createElement("span", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 25,
+        columnNumber: 16
+      }
+    }, "left")), /*#__PURE__*/_react.default.createElement(_index.Button, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 27,
+        columnNumber: 5
+      }
+    }, stock > 0 ? 'Select Reward' : 'Out of stock')));
+  }
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"c3469d175e6ab91a6ebac2096f1b2459","../../hooks/useTiers":"3c5be5ff31dd0c1a54092eb98c28ffa4","../index":"0305b5e98d355b2a177208259ce0ac88","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"304bfcdf97c182c258933a329c4fc1cd"}],"3c5be5ff31dd0c1a54092eb98c28ffa4":[function(require,module,exports) {
+"use strict";
+
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = useTiers;
+
+  var _react = require("react");
+
+  function useTiers() {
+    const [tiers, setTiers] = (0, _react.useState)([{
+      id: 0,
+      title: "Bamboo Stand",
+      description: "You get an ergonomic stand made of natural bamboo. You've helped us launch our promotional campaign, and you'll be added to a special Backer member list.",
+      price: 25,
+      stock: 101
+    }, {
+      id: 1,
+      title: "Black Edition Stand",
+      description: "You get a Black Special Edition computer stand and a personal thank oyu. You'll be added to our Backer member list. Shipping is included.",
+      price: 75,
+      stock: 64
+    }, {
+      id: 2,
+      title: "Mahogany Special Edition",
+      description: "You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You'll be added to our Backer member list. Shipping is included.",
+      price: 200,
+      stock: 0
+    }]);
+
+    function updateStock(id, stock) {
+      setTiers(prevTiers => {
+        return prevTiers.map(tier => {
+          if (tier !== id) {
+            return tier;
+          } else {
+            return { ...tier,
+              stock
+            };
+          }
+        });
+      });
+    }
+
+    return {
+      tiers,
+      updateStock
+    };
+  }
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"c3469d175e6ab91a6ebac2096f1b2459","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"304bfcdf97c182c258933a329c4fc1cd"}],"74bb31ca34fad88b4da4f6f0e48d578d":[function(require,module,exports) {
+"use strict";
+
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Button;
+
+  var _react = _interopRequireDefault(require("react"));
+
+  var _jsxFileName = "C:\\Dev\\Web\\Frontend-Mentor-Projects\\Crowdfunding-Product-Page\\src\\components\\Button\\Button.js";
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function Button({
+    children,
+    ...props
+  }) {
+    return /*#__PURE__*/_react.default.createElement("button", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 6,
+        columnNumber: 3
+      }
+    }, children);
+  }
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"c3469d175e6ab91a6ebac2096f1b2459","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"304bfcdf97c182c258933a329c4fc1cd"}],"045b432c043a2f2292be35b558e230be":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Title", {
+  enumerable: true,
+  get: function () {
+    return _Title.default;
+  }
+});
+Object.defineProperty(exports, "Progress", {
+  enumerable: true,
+  get: function () {
+    return _Progress.default;
+  }
+});
+Object.defineProperty(exports, "Main", {
+  enumerable: true,
+  get: function () {
+    return _Main.default;
+  }
+});
+
+var _Title = _interopRequireDefault(require("./Title/Title"));
+
+var _Progress = _interopRequireDefault(require("./Progress/Progress"));
+
+var _Main = _interopRequireDefault(require("./Main/Main"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./Title/Title":"2f1ea50f8cfa8d5f39f029147bdfe2a7","./Progress/Progress":"8f741ed7da4874b2b56712b83660d448","./Main/Main":"c132f68c6d948505b4701584bcdcbdc3"}],"2f1ea50f8cfa8d5f39f029147bdfe2a7":[function(require,module,exports) {
+"use strict";
+
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Title;
+
+  var _react = _interopRequireDefault(require("react"));
+
+  var _components = require("../../components");
+
+  var _jsxFileName = "C:\\Dev\\Web\\Frontend-Mentor-Projects\\Crowdfunding-Product-Page\\src\\sections\\Title\\Title.js";
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function Title() {
+    return /*#__PURE__*/_react.default.createElement("section", {
+      className: "title",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 8,
+        columnNumber: 3
+      }
+    }, /*#__PURE__*/_react.default.createElement("h2", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 9,
+        columnNumber: 4
+      }
+    }, "Mastercraft Bamboo Monitor Riser"), /*#__PURE__*/_react.default.createElement("p", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 10,
+        columnNumber: 4
+      }
+    }, "A beautiful & handcraft monitor stand to reduce neck and eye strain."), /*#__PURE__*/_react.default.createElement(_components.Button, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 11,
+        columnNumber: 4
+      }
+    }, "Back this project"), /*#__PURE__*/_react.default.createElement(_components.Bookmark, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 12,
+        columnNumber: 4
+      }
+    }));
+  }
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"c3469d175e6ab91a6ebac2096f1b2459","../../components":"0305b5e98d355b2a177208259ce0ac88","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"304bfcdf97c182c258933a329c4fc1cd"}],"8f741ed7da4874b2b56712b83660d448":[function(require,module,exports) {
+"use strict";
+
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Progress;
+
+  var _react = _interopRequireDefault(require("react"));
+
+  var _jsxFileName = "C:\\Dev\\Web\\Frontend-Mentor-Projects\\Crowdfunding-Product-Page\\src\\sections\\Progress\\Progress.js";
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function Progress() {
+    return /*#__PURE__*/_react.default.createElement("section", {
+      className: "progress",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 6,
+        columnNumber: 3
+      }
+    }, /*#__PURE__*/_react.default.createElement("h2", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 7,
+        columnNumber: 4
+      }
+    }, "Progress"));
+  }
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"c3469d175e6ab91a6ebac2096f1b2459","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"304bfcdf97c182c258933a329c4fc1cd"}],"c132f68c6d948505b4701584bcdcbdc3":[function(require,module,exports) {
+"use strict";
+
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Main;
+
+  var _react = _interopRequireDefault(require("react"));
+
+  var _useTiers = _interopRequireDefault(require("../../hooks/useTiers"));
+
+  var _components = require("../../components");
+
+  var _jsxFileName = "C:\\Dev\\Web\\Frontend-Mentor-Projects\\Crowdfunding-Product-Page\\src\\sections\\Main\\Main.js";
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function Main() {
+    const {
+      tiers
+    } = (0, _useTiers.default)();
+    return /*#__PURE__*/_react.default.createElement("section", {
+      className: "main",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 11,
+        columnNumber: 3
+      }
+    }, /*#__PURE__*/_react.default.createElement("h2", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 12,
+        columnNumber: 4
+      }
+    }, "About this project"), /*#__PURE__*/_react.default.createElement("p", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 13,
+        columnNumber: 4
+      }
+    }, "The Mastercraft Bamboo Monitor Riser is a sturdy and stylish platform that elevates your screen to a more comfortable viewing height. Placing your monitor as aye level has the potential to improve your posture and make your more comfortable while at work, helping you stay focuses at the tast at hand."), /*#__PURE__*/_react.default.createElement("p", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 19,
+        columnNumber: 4
+      }
+    }, "Featuring artisan scraftsmanship, the simplicity of design creates extra desk space below your computer to allow notepads, pens, and USB sticks to be stored under the stand."), tiers.map(tier => /*#__PURE__*/_react.default.createElement(_components.Pledge, {
+      key: `tier_${tier.id}`,
+      tier: tier.id,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 25,
+        columnNumber: 23
+      }
+    })));
+  }
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"c3469d175e6ab91a6ebac2096f1b2459","../../hooks/useTiers":"3c5be5ff31dd0c1a54092eb98c28ffa4","../../components":"0305b5e98d355b2a177208259ce0ac88","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"304bfcdf97c182c258933a329c4fc1cd"}]},{},["74b007429d368fe9a30eada9ae258655","c00e607576b6da73f3471278d158f50f"], null)
 
 //# sourceMappingURL=Crowdfunding-Product-Page.d6ae472f.js.map
