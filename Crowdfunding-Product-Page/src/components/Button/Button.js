@@ -1,8 +1,10 @@
 
 import React from 'react'
 
-export default function Button({ children, ...props }) {
+export default function Button({ disabled = false, children, ...props }) {
 	return (
-		<button>{children}</button>
+		<button className={disabled && "disabled"}>
+			{children}
+		</button>
 	)
 }

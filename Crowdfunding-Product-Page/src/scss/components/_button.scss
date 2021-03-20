@@ -15,4 +15,14 @@ button {
 	&:focus {
 		background-color: $primary-dark-cyan;
 	}
+
+	&.disabled {
+		background-color: $neutral-dark-grey;
+		cursor: not-allowed;
+
+		&:hover,
+		&:focus {
+			background-color: $neutral-dark-grey;
+		}
+	}
 }

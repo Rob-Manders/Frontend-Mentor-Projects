@@ -13,7 +13,7 @@ export default function Pledge({ tier, ...props }) {
 	}
 
 	return (
-		<div className="pledge">
+		<div className={`pledge ${stock === 0 && 'disabled'}`}>
 			<div className="pledge__header">
 				<h3>{title}</h3>
 				<p>Pledge ${price} or more</p>
@@ -24,11 +24,9 @@ export default function Pledge({ tier, ...props }) {
 			<div className="pledge__cta">
 				<p><span className="pledge__cta--stock">{stock}</span> <span>left</span></p>
 
-				<Button>
-					{
-						stock > 0 ? 'Select Reward' : 'Out of stock'
-					}
-				</Button>
+				{
+					stock > 0 ? <Button>Select Reward</Button> : <Button disabled>Out of stock</Button>
+				}
 			</div>
 		</div>
 	)
