@@ -1,10 +1,12 @@
 
 import React from 'react'
 
+import { Section, ProgressBar } from '../../components'
+
 export default function Progress() {
 	return (
-		<section className="progress">
-			<h2>Progress</h2>
-		</section>
+		<Section name="progress">
+			<ProgressBar />
+		</Section>
 	)
 }

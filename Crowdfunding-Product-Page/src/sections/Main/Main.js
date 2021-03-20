@@ -2,13 +2,13 @@
 import React from 'react'
 
 import useTiers from '../../hooks/useTiers'
-import { Pledge } from '../../components'
+import { Section, Pledge } from '../../components'
 
 export default function Main() {
 	const { tiers } = useTiers()
 
 	return (
-		<section className="main">
+		<Section name="main">
 			<h2>About this project</h2>
 			<p>
 				The Mastercraft Bamboo Monitor Riser is a sturdy and stylish platform that elevates your screen 
@@ -24,6 +24,6 @@ export default function Main() {
 			{
 				tiers.map(tier => <Pledge key={`tier_${tier.id}`} tier={tier.id} />)
 			}
-		</section>
+		</Section>
 	)
 }

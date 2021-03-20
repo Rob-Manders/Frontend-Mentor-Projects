@@ -2,6 +2,15 @@
 @use '../abstracts' as *;
 
 body {
-	background-color: $background-light-grey;
 	font-family: 'Commissioner', sans-serif;
+
+	background-image: url('https://raw.githubusercontent.com/Rob-Manders/Frontend-Mentor-Projects/main/Crowdfunding-Product-Page/images/image-hero-desktop.jpg');
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-color: $background-light-grey;
+
+	@media (max-width: 375px) {
+		background-image: url('https://raw.githubusercontent.com/Rob-Manders/Frontend-Mentor-Projects/main/Crowdfunding-Product-Page/images/image-hero-mobile.jpg');
+		background-size: 375px 375px;
+	}
 }

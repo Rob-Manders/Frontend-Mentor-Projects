@@ -1,0 +1,22 @@
+
+section {
+	background-color: #fff;
+	max-width: 720px;
+	box-shadow: 0 1px 3px rgb(172, 172, 172);
+	border-radius: 0.75rem;
+	margin: 0 auto;
+	margin-top: 1rem;
+	padding: 2rem;
+
+	&:first-of-type {
+		margin-top: 16.5rem;
+	}
+
+	&:last-of-type {
+		margin-bottom: 5rem;
+	}
+
+	h2 {
+		margin: 0;
+	}
+}
