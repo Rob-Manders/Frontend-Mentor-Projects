@@ -8,7 +8,7 @@ export default function Title() {
 		<Section name="title">
 			<h2>Mastercraft Bamboo Monitor Riser</h2>
 			<p>A beautiful & handcraft monitor stand to reduce neck and eye strain.</p>
-			<div className="title__actions">
+			<div className="title__cta">
 				<Button>Back this project</Button>
 				<Bookmark />
 			</div>
