@@ -22,7 +22,7 @@ export default function Pledge({ tier, ...props }) {
 			<p>{description}</p>
 
 			<div className="pledge__cta">
-				<p>{stock} <span>left</span></p>
+				<p><span className="pledge__cta--stock">{stock}</span> <span>left</span></p>
 
 				<Button>
 					{

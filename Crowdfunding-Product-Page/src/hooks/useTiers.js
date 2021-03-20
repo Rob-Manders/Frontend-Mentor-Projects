@@ -13,7 +13,7 @@ export default function useTiers() {
 		{
 			id: 1,
 			title: "Black Edition Stand",
-			description: "You get a Black Special Edition computer stand and a personal thank oyu. You'll be added to our Backer member list. Shipping is included.",
+			description: "You get a Black Special Edition computer stand and a personal thank you. You'll be added to our Backer member list. Shipping is included.",
 			price: 75,
 			stock: 64
 		},

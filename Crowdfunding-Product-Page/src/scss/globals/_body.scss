@@ -3,6 +3,7 @@
 
 body {
 	font-family: 'Commissioner', sans-serif;
+	line-height: 1.5;
 
 	background-image: url('https://raw.githubusercontent.com/Rob-Manders/Frontend-Mentor-Projects/main/Crowdfunding-Product-Page/images/image-hero-desktop.jpg');
 	background-repeat: no-repeat;
@@ -12,5 +13,16 @@ body {
 	@media (max-width: 375px) {
 		background-image: url('https://raw.githubusercontent.com/Rob-Manders/Frontend-Mentor-Projects/main/Crowdfunding-Product-Page/images/image-hero-mobile.jpg');
 		background-size: 375px 375px;
+	}
+
+	h1, h2, h3 {
+		color: $neutral-black;
+		font-weight: 700;
+		margin: 0;
+	}
+
+	p {
+		color: $neutral-dark-grey;
+		font-weight: 400;
 	}
 }
