@@ -1,0 +1,18 @@
+
+@use '../abstracts/colours' as *;
+
+button {
+	all: unset;
+	cursor: pointer;
+	background-color: $primary-moderate-cyan;
+	color: #fff;
+	font-weight: 700;
+	padding: 1rem 1.75rem;
+	border-radius: 100vw;
+	transition: 150ms ease-in-out;
+
+	&:hover,
+	&:focus {
+		background-color: $primary-dark-cyan;
+	}
+}
