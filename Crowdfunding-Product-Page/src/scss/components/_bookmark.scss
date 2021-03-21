@@ -1,0 +1,39 @@
+
+@use '../abstracts' as *;
+
+.bookmark {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	background-color: $neutral-light-grey;
+	color: $neutral-dark-grey;
+	font-weight: 700;
+	padding-right: 1.25rem;
+	border-radius: 100vw;
+
+	&__icon {
+		margin-right: 1.25rem;
+
+		&--circle {
+			fill: #2F2F2F;
+		}
+
+		&--tag {
+			fill: #B1B1B1;
+		}
+	}
+
+	&.active {
+		color: $primary-dark-cyan;
+
+		.bookmark__icon {	
+			&--circle {
+				fill: $primary-dark-cyan;
+			}
+	
+			&--tag {
+				fill: #fff;
+			}
+		}
+	}
+}

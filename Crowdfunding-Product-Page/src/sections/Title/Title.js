@@ -10,7 +10,7 @@ export default function Title() {
 			<p>A beautiful & handcraft monitor stand to reduce neck and eye strain.</p>
 			<div className="title__cta">
 				<Button>Back this project</Button>
-				<Bookmark />
+				<Bookmark active/>
 			</div>
 		</Section>
 	)
