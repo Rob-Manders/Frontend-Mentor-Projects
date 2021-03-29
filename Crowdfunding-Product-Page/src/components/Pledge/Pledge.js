@@ -1,16 +1,12 @@
 
 import React from 'react'
 
-import useTiers from '../../hooks/useTiers'
+import useProduct from '../../hooks/useProduct'
 import { Button } from '../index'
 
 export default function Pledge({ tier, ...props }) {
-	const { tiers, updateStock } = useTiers()
-	const { title, description, price, stock } = tiers[tier]
-
-	function makePledge() {
-		console.log("Making pledge...")
-	}
+	const { product } = useProduct()
+	const { title, description, price, stock } = product.tiers[tier]
 
 	return (
 		<div className={`pledge ${stock === 0 && 'disabled'}`}>
