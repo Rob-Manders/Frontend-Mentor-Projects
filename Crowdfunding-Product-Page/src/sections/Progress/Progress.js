@@ -1,13 +1,13 @@
 
-import React from 'react'
-import useProduct from '../../hooks/useProduct'
+import React, { useContext } from 'react'
+import { ProductContext } from '../../context/Product'
 import { Section, ProgressBar, Stats } from '../../components'
 
 const current = 89914
 const target = 100000
 
 export default function Progress() {
-	const { product } = useProduct()
+	const { product } = useContext(ProductContext)
 	const {
 		target,
 		current,

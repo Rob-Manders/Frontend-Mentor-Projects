@@ -1,13 +1,16 @@
 
-import React from 'react'
-
+import React, { useContext } from 'react'
+import { ProcductContext, ProductContext } from '../../context/Product'
 import { Section, Button, Bookmark } from '../../components'
 
 export default function Title() {
+	const { product } = useContext(ProductContext)
+	const { name, subTitle } = product
+
 	return (
 		<Section name="title">
-			<h2>Mastercraft Bamboo Monitor Riser</h2>
-			<p>A beautiful & handcraft monitor stand to reduce neck and eye strain.</p>
+			<h2>{name}</h2>
+			<p>{subTitle}</p>
 			<div className="title__cta">
 				<Button>Back this project</Button>
 				<Bookmark active/>

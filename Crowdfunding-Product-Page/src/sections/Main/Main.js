@@ -1,11 +1,11 @@
 
-import React from 'react'
+import React, { useContext } from 'react'
+import { ProductContext } from '../../context/Product'
 
-import useProduct from '../../hooks/useProduct'
 import { Section, Pledge } from '../../components'
 
 export default function Main() {
-	const { product } = useProduct()
+	const { product } = useContext(ProductContext)
 
 	return (
 		<Section name="main">
@@ -14,7 +14,7 @@ export default function Main() {
 			{product.description.map((paragraph, index) => <p key={`desc_para_${index}`}>{paragraph}</p>)}
 
 			{
-				product.tiers.map(tier => <Pledge key={`tier_${tier.id}`} tier={tier.id} />)
+				product.tiers.map(tier => <Pledge key={`tier_${tier.id}`} tier={tier} />)
 			}
 		</Section>
 	)

@@ -1,7 +1,8 @@
 
-import React, { useState, useEffect, createContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import useAPI from './hooks/useAPI'
-import useProduct from './hooks/useProduct'
+
+import { ProductContext } from './context/Product'
 
 import {
 	Header,
@@ -14,16 +15,13 @@ import {
 	Main
 } from './sections'
 
-const ProductContext = createContext()
-
 export default function App() {
 	const [ loaded, setLoaded ] = useState(false)
-	const [ apiData, setApiData ] = useState({})
-	const { updateProduct, setProduct } = useProduct()
+	const { setProduct } = useContext(ProductContext)
 
 	useEffect(() => {
 		useAPI()
-			.then(data => setApiData())
+			.then(data => setProduct(data))
 			.then(() => setLoaded(true))
 	}, [])
 
@@ -40,13 +38,9 @@ export default function App() {
 			<Header>
 				<Nav />
 			</Header>
-
-			<ProductContext.Provider value={apiData}>
-				{
-					loaded ? content : 'Loading...'
-				}
-			</ProductContext.Provider>
-			
+			{
+				loaded ? content : 'Loading...'
+			}
 		</>
 	)
 }

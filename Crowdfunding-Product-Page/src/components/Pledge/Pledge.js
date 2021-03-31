@@ -1,12 +1,15 @@
 
 import React from 'react'
 
-import useProduct from '../../hooks/useProduct'
 import { Button } from '../index'
 
 export default function Pledge({ tier, ...props }) {
-	const { product } = useProduct()
-	const { title, description, price, stock } = product.tiers[tier]
+	const {
+		title,
+		description,
+		price,
+		stock
+	} = tier
 
 	return (
 		<div className={`pledge ${stock === 0 && 'disabled'}`}>
