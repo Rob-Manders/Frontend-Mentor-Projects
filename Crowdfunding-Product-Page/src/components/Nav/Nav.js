@@ -1,8 +1,13 @@
 
 import React from 'react'
+import Logo from '../Logo/Logo'
+import Menu from '../Menu/Menu'
 
 export default function Nav() {
 	return (
-		<h2>Nav</h2>
+		<nav>
+			<Logo />
+			<Menu />
+		</nav>
 	)
 }
