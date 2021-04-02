@@ -7,10 +7,10 @@ import {
 
 export default function PledgeModal() {
 	const { hideModal } = useContext(ModalContext)
-	
+
 	return (
 		<Modal modal='pledge'>
-			<h3>Make Pledge</h3>
+			<h3>Back this project</h3>
 			<p>The modal for making a pledge. Obviously...</p>
 		</Modal>
 	)

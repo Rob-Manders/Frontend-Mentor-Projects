@@ -12,9 +12,16 @@
 	place-content: center;
 
 	&__content {
+		position: relative;
 		background-color: #fff;
 		border-radius: 0.5rem;
 		padding: 1rem;
+
+		.icon--close-modal {
+			position: absolute;
+			top: 1rem;
+			right: 1rem;	
+		}
 	}
 
 	&.hidden {
