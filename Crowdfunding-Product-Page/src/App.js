@@ -3,9 +3,11 @@ import React, { useState, useEffect, useContext } from 'react'
 import useAPI from './hooks/useAPI'
 
 import { ProductContext } from './context/Product'
+import { Modals } from './context/Modals'
 
 import {
 	Header,
+	Modal,
 	Nav
 } from './components'
 
@@ -14,6 +16,11 @@ import {
 	Progress,
 	Main
 } from './sections'
+
+import {
+	CompleteModal,
+	PledgeModal
+} from './modals'
 
 export default function App() {
 	const [ loaded, setLoaded ] = useState(false)
@@ -34,13 +41,18 @@ export default function App() {
 	)
 
 	return (
-		<>
+		<Modals>
+			<PledgeModal />
+			<CompleteModal />
+
 			<Header>
 				<Nav />
 			</Header>
+
 			{
 				loaded ? content : 'Loading...'
 			}
-		</>
+			
+		</Modals>
 	)
 }

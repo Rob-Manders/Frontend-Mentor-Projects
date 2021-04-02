@@ -1,9 +1,9 @@
 
 import React from 'react'
 
-export default function Button({ disabled = false, children, ...props }) {
+export default function Button({ action, disabled = false, children, ...props }) {
 	return (
-		<button className={`${disabled && 'disabled'}`}>
+		<button className={`${disabled && 'disabled'}`} onClick={action}>
 			{children}
 		</button>
 	)
