@@ -1,17 +1,24 @@
 
 import React, { useContext } from 'react'
+import { ProductContext } from '../../context/Product'
 import { ModalContext } from '../../context/Modals'
-import {
-	Modal
-} from '../../components'
+import { Modal, Button } from '../../components'
+import CheckIcon from '../../icons/CheckIcon'
 
 export default function PledgeModal() {
+	const { product } = useContext(ProductContext)
 	const { hideModal } = useContext(ModalContext)
 	
 	return (
 		<Modal modal='complete'>
-			<h3>Complete</h3>
-			<p>The modal for when you have completed a pledge.</p>
+			<CheckIcon />
+
+			<h2>Thanks for your support!</h2>
+			<p>{product.thankyouMessage}</p>
+
+			<Button action={() => hideModal('complete')}>
+				Got it!
+			</Button>
 		</Modal>
 	)
 }

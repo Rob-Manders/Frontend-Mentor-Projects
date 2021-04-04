@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-export default function CloseModal({ action = null }) {
+export default function CloseModalIcon({ action = null }) {
 	const cursorType = action !== null ? 'pointer' : 'default'
 
 	return (

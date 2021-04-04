@@ -27,8 +27,13 @@ function Modals({ children, ...props }) {
 		})
 	}
 
+	function switchModal(currentModal, nextModal) {
+		hideModal(currentModal)
+		showModal(nextModal)
+	}
+
 	return (
-		<ModalContext.Provider value={{ modals, showModal, hideModal }}>
+		<ModalContext.Provider value={{ modals, showModal, hideModal, switchModal }}>
 			{children}	
 		</ModalContext.Provider>
 	)
