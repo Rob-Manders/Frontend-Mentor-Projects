@@ -5,7 +5,7 @@ import { ModalContext } from '../../context/Modals'
 import { Modal, Button } from '../../components'
 import CheckIcon from '../../icons/CheckIcon'
 
-export default function PledgeModal() {
+export default function CompleteModal() {
 	const { product } = useContext(ProductContext)
 	const { hideModal } = useContext(ModalContext)
 	

@@ -1,12 +1,16 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, } from 'react'
 
-export default function ProgressBar({ target, current, ...props }) {
+export default function ProgressBar({ current, target, ...props }) {
 	const [percentage, setPercentage] = useState('')
 
 	useEffect(() => {
-		setPercentage(`${(current / target) * 100}%`)
-	}, [])
+		if (current >= target) {
+			setPercentage('100%')
+		} else {
+			setPercentage(`${(current / target) * 100}%`)
+		}
+	}, [current])
 
 	return (
 		<div id="elementID" className="progress-bar">
