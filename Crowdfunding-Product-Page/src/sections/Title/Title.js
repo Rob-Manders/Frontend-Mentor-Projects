@@ -7,9 +7,13 @@ import { Section, Button, Bookmark } from '../../components'
 export default function Title() {
 	const { product } = useContext(ProductContext)
 	const { showModal } = useContext(ModalContext)
-	const { name, subTitle } = product
+	const { name, subTitle, bookmarked } = product
 
-	
+	const isBookmarked = bookmarked
+
+	function bookmarkProject() {
+		isBookmarked = !isBookmarked
+	}
 
 	return (
 		<Section name="title">
@@ -17,7 +21,9 @@ export default function Title() {
 			<p>{subTitle}</p>
 			<div className="title__cta">
 				<Button action={() => showModal('pledge')}>Back this project</Button>
-				<Bookmark active/>
+				{
+					isBookmarked ? <Bookmark active/> : <Bookmark />
+				}
 			</div>
 		</Section>
 	)
