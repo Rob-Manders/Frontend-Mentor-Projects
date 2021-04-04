@@ -6,7 +6,7 @@ const ModalContext = createContext()
 function Modals({ children, ...props }) {
 	const [ modals, setModals ] = useState({
 		pledge: false,
-		completed: false
+		complete: false
 	})
 
 	function showModal(modal) {

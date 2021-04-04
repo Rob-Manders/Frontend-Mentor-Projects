@@ -3,28 +3,16 @@ import React, { useState, useEffect, useContext } from 'react'
 import useAPI from './hooks/useAPI'
 
 import { ProductContext } from './context/Product'
-import { Modals } from './context/Modals'
+import { ModalContext } from './context/Modals'
 
-import {
-	Header,
-	Modal,
-	Nav
-} from './components'
-
-import {
-	Title,
-	Progress,
-	Main
-} from './sections'
-
-import {
-	CompleteModal,
-	PledgeModal
-} from './modals'
+import {	Header, Nav } from './components'
+import { Title, Progress, Main } from './sections'
+import {	CompleteModal,	PledgeModal } from './modals'
 
 export default function App() {
 	const [ loaded, setLoaded ] = useState(false)
 	const { setProduct } = useContext(ProductContext)
+	const { modals } = useContext(ModalContext)
 
 	useEffect(() => {
 		useAPI()
@@ -41,18 +29,15 @@ export default function App() {
 	)
 
 	return (
-		<Modals>
-			<PledgeModal />
-			<CompleteModal />
-
+		<>
 			<Header>
 				<Nav />
 			</Header>
 
-			{
-				loaded ? content : 'Loading...'
-			}
+			{loaded && content}
 			
-		</Modals>
+			{modals.pledge && <PledgeModal />}
+			{modals.complete && <CompleteModal />}
+		</>
 	)
 }

@@ -4,7 +4,7 @@ import { ModalContext } from '../../context/Modals'
 import { Modal, Button } from '../../components'
 
 export default function PledgeModal() {
-	const { hideModal, switchModal } = useContext(ModalContext)
+	const { switchModal } = useContext(ModalContext)
 
 	return (
 		<Modal modal='pledge'>
