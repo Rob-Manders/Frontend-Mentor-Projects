@@ -3,6 +3,7 @@ import React, { useState, useContext } from 'react'
 import { ProductContext } from '../../context/Product'
 import { ModalContext } from '../../context/Modals'
 import { Section, Button, Bookmark } from '../../components'
+import MastercraftLogoIcon from '../../icons/MastercraftLogoIcon'
 import useToggleBookmark from '../../hooks/useToggleBookmark'
 
 export default function Title() {
@@ -13,6 +14,7 @@ export default function Title() {
 
 	return (
 		<Section name="title">
+			<MastercraftLogoIcon />
 			<h2>{name}</h2>
 			<p>{subTitle}</p>
 			<div className="title__cta">

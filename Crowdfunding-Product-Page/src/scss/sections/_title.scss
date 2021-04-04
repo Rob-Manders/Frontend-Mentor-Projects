@@ -1,6 +1,22 @@
 
 .title {
+	position: relative;
+	display: flex;
+	flex-direction: column;
 	text-align: center;
+
+	.icon--mastercraft-logo {
+		$size: 56px;
+		width: $size;
+		height: $size;
+		position: absolute;
+		top: (0 - ($size / 2));
+		left: calc(50% - (#{$size} / 2));
+	}
+
+	h2 {
+		margin-top: 1rem;
+	}
 
 	&__cta {
 		display: flex;
