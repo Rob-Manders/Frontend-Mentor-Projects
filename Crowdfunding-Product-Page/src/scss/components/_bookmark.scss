@@ -4,12 +4,15 @@
 .bookmark {
 	cursor: pointer;
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
 	background-color: $neutral-light-grey;
 	color: $neutral-dark-grey;
 	font-weight: 700;
 	padding-right: 1.25rem;
 	border-radius: 100vw;
+	width: 190px;
+	overflow: hidden;
 
 	&__icon {
 		margin-right: 1.25rem;

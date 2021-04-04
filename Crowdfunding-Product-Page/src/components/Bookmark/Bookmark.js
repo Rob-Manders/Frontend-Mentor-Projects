@@ -1,9 +1,9 @@
 
 import React from 'react'
 
-export default function Bookmark({ active = false, ...props }) {
+export default function Bookmark({ action, active = false, ...props }) {
 	return (
-		<div className={`bookmark ${active && 'active'}`}>
+		<div className={`bookmark ${active && 'active'}`} onClick={action}>
 			<svg className="bookmark__icon" width="56" height="56" xmlns="http://www.w3.org/2000/svg">
 				<g fill="none" fillRule="evenodd">
 					<circle className="bookmark__icon--circle" cx="28" cy="28" r="28"/>
