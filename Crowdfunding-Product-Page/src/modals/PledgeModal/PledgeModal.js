@@ -1,16 +1,19 @@
 
 import React, { useContext } from 'react'
-import { ModalContext } from '../../context/Modals'
-import { Modal, Button } from '../../components'
+import { ProductContext } from '../../context/Product'
+import { Modal, ModalPledge } from '../../components'
 
 export default function PledgeModal() {
-	const { switchModal } = useContext(ModalContext)
+	const { product } = useContext(ProductContext)
 
 	return (
 		<Modal modal='pledge'>
 			<h3>Back this project</h3>
-			<p>The modal for making a pledge. Obviously...</p>
-			<Button action={() => switchModal('pledge', 'complete')}>OK</Button>
+			<p>Want to support us in bringing {product.name} out in the world?</p>
+
+			<ModalPledge noReward />
+
+			{ product.tiers.map(tier => <ModalPledge key={`tier_modal_${tier.id}`} tier={tier} />) }
 		</Modal>
 	)
 }
