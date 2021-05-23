@@ -1,0 +1,12 @@
+
+@use '../abstracts/breakpoints' as *;
+
+.card {
+	display: flex;
+	flex-direction: row;
+	padding: 0;
+
+	@media (max-width: $desktop) {
+		flex-direction: column;
+	}
+}
