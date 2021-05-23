@@ -1,0 +1,46 @@
+
+@use '../abstracts/colours' as *;
+
+.vehicle {
+	padding: 2.5rem;
+}
+
+.sedan {
+	background-color: $bright-orange;
+
+	.button {
+		color: $bright-orange;
+
+		&:hover,
+		&:focus {
+			color: $very-light-grey;
+		}
+	}
+}
+
+.suv {
+	background-color: $dark-cyan;
+
+	.button {
+		color: $dark-cyan;
+
+		&:hover,
+		&:focus {
+			color: $very-light-grey;
+		}
+	}
+}
+
+.luxury {
+	background-color: $very-dark-cyan;
+
+	.button {
+		color: $very-dark-cyan;
+
+		&:hover,
+		&:focus {
+			color: $very-light-grey;
+		}
+	}
+}
+
